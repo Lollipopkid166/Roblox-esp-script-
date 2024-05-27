@@ -1,0 +1,22 @@
+-- Function to create a red highlight for a player
+local function createRedHighlight(player)
+    local highlight = Instance.new("BoxHandleAdornment")
+    highlight.Adornee = player.Character.HumanoidRootPart
+    highlight.Size = Vector3.new(4, 4, 4) -- Adjust the size as needed
+    highlight.Color3 = Color3.fromRGB(255, 0, 0) -- Red color
+    highlight.Transparency = 0.5 -- Adjust transparency if needed
+    highlight.AlwaysOnTop = true
+    highlight.ZIndex = 5
+    highlight.Parent = player.Character
+end
+
+-- Loop through all players in the game and highlight them in red
+for _, player in pairs(game:GetService("Players"):GetPlayers()) do
+    createRedHighlight(player)
+end
+
+-- Listen for new players joining and highlight them as well
+game:GetService("Players").PlayerAdded:Connect(function(player)
+    createRedHighlight(player)
+end)
+end
